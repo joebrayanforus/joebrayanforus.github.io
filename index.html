@@ -168,6 +168,7 @@
   ul.speclist{ margin:10px 0; padding-left:0; list-style:none; }
   ul.speclist li{ position:relative; padding-left:18px; margin-bottom:8px; line-height:1.5; }
   ul.speclist li::before{ content:"\203A"; position:absolute; left:0; color:var(--accent); font-weight:700; }
+  ul.speclist code{ font-family:"IBM Plex Mono",monospace; font-size:.85em; background:var(--bg-raised); border:1px solid var(--line); padding:1px 5px; }
 
   /* schematic diagram */
   .diagram{ margin:18px 0; padding:16px; border:1px dashed var(--line-strong); background:var(--bg-raised); }
@@ -361,12 +362,35 @@
       </div>
     </article>
 
+    <article class="sheet">
+      <span class="tick-bl"></span><span class="tick-br"></span>
+      <div class="proj-head">
+        <h2 class="display">SQL &amp; Data Analysis</h2>
+        <span class="status-pill">Personal projects</span>
+      </div>
+      <div class="meta-row">
+        <div><span class="lbl">Role</span>Solo</div>
+        <div><span class="lbl">Stack</span>SQL &middot; PostgreSQL &middot; PL/pgSQL</div>
+      </div>
+      <div class="proj-body">
+        <p>Three self-directed projects to get comfortable with the SQL an analyst actually writes &mdash; window functions, CTEs, stored procedures &mdash; not just SELECT statements.</p>
+        <ul class="speclist">
+          <li><strong>Netflix catalog:</strong> answered 15 business questions with window functions (<code>RANK() OVER PARTITION</code>), array parsing (<code>STRING_TO_ARRAY</code>/<code>UNNEST</code>) for multi-valued fields like cast and country, and content categorization via <code>CASE</code>.</li>
+          <li><strong>Library management system:</strong> a 6-table relational schema (branches, staff, members, books, issues, returns) with foreign keys, PL/pgSQL stored procedures for issuing and returning books, and CTAS reports on branch performance and overdue fines.</li>
+          <li><strong>Retail sales analysis:</strong> data cleaning, CTEs and window functions to segment customers, rank monthly sales, and split transactions into morning/afternoon/evening shifts.</li>
+        </ul>
+        <div class="cta-row" style="margin-top:6px;">
+          <a class="btn" href="https://github.com/joebrayanforus/netflix_sqlprojekt" target="_blank" rel="noopener">Netflix &#8599;</a>
+          <a class="btn" href="https://github.com/joebrayanforus/Library-Management-System" target="_blank" rel="noopener">Library &#8599;</a>
+          <a class="btn" href="https://github.com/joebrayanforus/sql_retail_sales_p1" target="_blank" rel="noopener">Retail sales &#8599;</a>
+        </div>
+      </div>
+    </article>
+
     <div class="eyebrow" style="margin:26px 0 8px;">Minor works</div>
     <table class="minor">
       <thead><tr><th>Project</th><th>Stack</th><th>Description</th></tr></thead>
       <tbody>
-        <tr><td>Netflix Catalog Analysis</td><td class="tag">SQL</td><td>Exploratory analysis of a Netflix titles dataset &mdash; ratings, genres and release trends.</td></tr>
-        <tr><td>Library Management System</td><td class="tag">PL/pgSQL</td><td>A relational schema and stored procedures for checkouts, holds and fines.</td></tr>
         <tr><td>Docker challenges</td><td class="tag">Dockerfile &middot; Node.js</td><td>Small containerization exercises &mdash; image builds, port mapping, multi-stage deploys.</td></tr>
       </tbody>
     </table>
