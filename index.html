@@ -1,0 +1,478 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Joe Tchinda Oumbe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EAEDE5;
+    --bg-panel:#FBFCF9;
+    --bg-raised:#FFFFFF;
+    --ink:#161A17;
+    --ink-dim:#586055;
+    --ink-faint:#8C9488;
+    --line:#C7CCBE;
+    --line-strong:#9AA294;
+    --accent:#D9560B;
+    --accent-ink:#FFFFFF;
+    --accent-2:#1F6E58;
+    --accent-2-ink:#FFFFFF;
+    --shadow: 0 1px 0 rgba(22,26,23,.04);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121512;
+      --bg-panel:#191D19;
+      --bg-raised:#1F2420;
+      --ink:#E9EDE5;
+      --ink-dim:#A6AEA1;
+      --ink-faint:#6E756A;
+      --line:#333A32;
+      --line-strong:#4A5245;
+      --accent:#FF7A33;
+      --accent-ink:#181008;
+      --accent-2:#4FC79E;
+      --accent-2-ink:#08211A;
+      --shadow: 0 1px 0 rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121512;
+    --bg-panel:#191D19;
+    --bg-raised:#1F2420;
+    --ink:#E9EDE5;
+    --ink-dim:#A6AEA1;
+    --ink-faint:#6E756A;
+    --line:#333A32;
+    --line-strong:#4A5245;
+    --accent:#FF7A33;
+    --accent-ink:#181008;
+    --accent-2:#4FC79E;
+    --accent-2-ink:#08211A;
+    --shadow: 0 1px 0 rgba(0,0,0,.3);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 27px, var(--line) 28px),
+      repeating-linear-gradient(90deg, transparent, transparent 27px, var(--line) 28px),
+      var(--bg);
+    background-attachment: local;
+    color:var(--ink);
+    font-family:"IBM Plex Sans", system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+  img{max-width:100%;}
+  [hidden]{display:none!important;}
+
+  .display{ font-family:"Big Shoulders Display", "Arial Narrow", sans-serif; font-weight:800; letter-spacing:.01em; text-wrap:balance; }
+  .mono{ font-family:"IBM Plex Mono", ui-monospace, monospace; }
+  .eyebrow{ font-family:"IBM Plex Mono", monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-dim); }
+
+  /* ---------- nav ---------- */
+  nav.topbar{
+    position:sticky; top:env(safe-area-inset-top, 0px); z-index:50;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:14px 20px; padding-inline:max(20px, env(safe-area-inset-left,0px)) max(20px, env(safe-area-inset-right,0px));
+    background:color-mix(in srgb, var(--bg-panel) 92%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.topbar .mark{ font-size:1.15rem; text-decoration:none; letter-spacing:.02em; }
+  nav.topbar .mark b{ color:var(--accent); }
+  .navlinks{ display:flex; gap:4px; flex-wrap:wrap; list-style:none; margin:0; padding:0; }
+  .navlinks a{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:"IBM Plex Mono", monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase;
+    text-decoration:none; color:var(--ink-dim);
+    padding:7px 10px; border:1px solid transparent; border-radius:2px;
+  }
+  .navlinks a .num{ color:var(--ink-faint); }
+  .navlinks a:hover{ color:var(--ink); border-color:var(--line); }
+  .navlinks a.active{ color:var(--ink); border-color:var(--line-strong); background:var(--bg-raised); }
+  .navlinks a.active .num{ color:var(--accent); }
+
+  /* ---------- layout shell ---------- */
+  main{ max-width:920px; margin:0 auto; padding:0 20px 40px; }
+  section.page{ padding-top:44px; }
+  section.page > .kicker{ margin-bottom:6px; }
+
+  /* corner-tick sheet wrapper, technical-drawing feel */
+  .sheet{
+    position:relative;
+    border:1px solid var(--line-strong);
+    background:var(--bg-panel);
+    padding:28px;
+    margin-bottom:28px;
+  }
+  .sheet::before,.sheet::after,.sheet .tick-br,.sheet .tick-bl{
+    content:""; position:absolute; width:14px; height:14px; pointer-events:none;
+  }
+  .sheet::before{ top:-1px; left:-1px; border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
+  .sheet::after{ top:-1px; right:-1px; border-top:2px solid var(--accent); border-right:2px solid var(--accent); }
+  .sheet .tick-bl{ bottom:-1px; left:-1px; border-bottom:2px solid var(--accent); border-left:2px solid var(--accent); }
+  .sheet .tick-br{ bottom:-1px; right:-1px; border-bottom:2px solid var(--accent); border-right:2px solid var(--accent); }
+
+  /* ---------- hero / cover ---------- */
+  .cover-grid{ display:grid; grid-template-columns: 1.5fr 1fr; gap:24px; align-items:start; }
+  @media (max-width:720px){ .cover-grid{ grid-template-columns:1fr; } }
+
+  h1.name{ font-size: clamp(2.6rem, 8vw, 4.6rem); line-height:.92; margin:6px 0 10px; }
+  .role-line{ font-size:1.15rem; color:var(--ink-dim); margin:0 0 18px; }
+  .role-line .tag{ color:var(--accent); font-weight:600; }
+  .intro{ font-size:1.02rem; line-height:1.65; max-width:60ch; color:var(--ink); }
+
+  .titleblock{
+    border:1px solid var(--line-strong);
+    background:var(--bg-raised);
+    font-family:"IBM Plex Mono", monospace; font-size:.78rem;
+  }
+  .titleblock .row{ display:flex; border-bottom:1px solid var(--line); }
+  .titleblock .row:last-child{ border-bottom:none; }
+  .titleblock .k{ width:38%; padding:9px 10px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.06em; border-right:1px solid var(--line); }
+  .titleblock .v{ padding:9px 10px; color:var(--ink); flex:1; }
+
+  .cta-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:"IBM Plex Mono", monospace; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase;
+    text-decoration:none; padding:10px 16px; border:1px solid var(--line-strong); color:var(--ink);
+  }
+  .btn.primary{ background:var(--accent); border-color:var(--accent); color:var(--accent-ink); }
+  .btn:hover{ border-color:var(--accent); }
+
+  /* ---------- project preview cards (cover page) ---------- */
+  .preview-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px; }
+  @media (max-width:640px){ .preview-grid{ grid-template-columns:1fr; } }
+  .preview-card{ border:1px solid var(--line); background:var(--bg-panel); padding:18px; display:flex; flex-direction:column; gap:8px; }
+  .preview-card h3{ margin:0; font-size:1.25rem; }
+  .preview-card p{ margin:0; color:var(--ink-dim); font-size:.92rem; line-height:1.5; }
+  .preview-card a.go{ margin-top:auto; font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); text-decoration:none; }
+
+  /* ---------- chips ---------- */
+  .chips{ display:flex; flex-wrap:wrap; gap:6px; margin:12px 0; }
+  .chip{ font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.03em; padding:4px 8px; border:1px solid var(--line-strong); color:var(--ink-dim); }
+
+  /* ---------- project detail ---------- */
+  .proj-head{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; border-bottom:1px solid var(--line); padding-bottom:10px; margin-bottom:16px;}
+  .proj-head h2{ margin:0; font-size:2rem; }
+  .status-pill{ font-family:"IBM Plex Mono",monospace; font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; padding:4px 9px; border:1px solid var(--accent-2); color:var(--accent-2); }
+  .meta-row{ display:flex; gap:18px; flex-wrap:wrap; margin-bottom:16px; }
+  .meta-row div{ font-size:.82rem; }
+  .meta-row .lbl{ font-family:"IBM Plex Mono",monospace; font-size:.65rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); display:block; margin-bottom:2px;}
+  .proj-body p{ line-height:1.65; }
+  ul.speclist{ margin:10px 0; padding-left:0; list-style:none; }
+  ul.speclist li{ position:relative; padding-left:18px; margin-bottom:8px; line-height:1.5; }
+  ul.speclist li::before{ content:"\203A"; position:absolute; left:0; color:var(--accent); font-weight:700; }
+
+  /* schematic diagram */
+  .diagram{ margin:18px 0; padding:16px; border:1px dashed var(--line-strong); background:var(--bg-raised); }
+  .diagram svg{ width:100%; height:auto; display:block; }
+  .diagram-cap{ margin-top:8px; font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); text-align:center; }
+
+  /* minor works table */
+  table.minor{ width:100%; border-collapse:collapse; font-size:.88rem; }
+  table.minor th{ text-align:left; font-family:"IBM Plex Mono",monospace; font-size:.68rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint); border-bottom:1px solid var(--line-strong); padding:6px 8px; }
+  table.minor td{ padding:9px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  table.minor td.tag{ font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--accent-2); white-space:nowrap; }
+
+  /* ---------- profile / datasheet ---------- */
+  .datasheet{ display:grid; grid-template-columns: repeat(2,1fr); gap:14px; }
+  @media (max-width:640px){ .datasheet{ grid-template-columns:1fr; } }
+  .ds-block{ border:1px solid var(--line); padding:14px 16px; background:var(--bg-panel); }
+  .ds-block h4{ margin:0 0 8px; font-family:"IBM Plex Mono",monospace; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); }
+  .ds-block p{ margin:0; font-size:.92rem; line-height:1.6; }
+
+  .meter-row{ display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+  .meter-row .lang{ width:110px; font-size:.9rem; }
+  .meter-row .lvl{ width:64px; font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--ink-dim); }
+  .meter{ display:flex; gap:3px; }
+  .meter i{ width:16px; height:8px; background:var(--line); display:block; }
+  .meter i.on{ background:var(--accent-2); }
+
+  /* ---------- contact ---------- */
+  .connector{ display:flex; flex-direction:column; gap:0; border:1px solid var(--line-strong); }
+  .pin{ display:flex; align-items:center; justify-content:space-between; padding:16px 18px; border-bottom:1px solid var(--line); text-decoration:none; color:var(--ink); }
+  .pin:last-child{ border-bottom:none; }
+  .pin:hover{ background:var(--bg-raised); }
+  .pin .pk{ font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); }
+  .pin .pv{ font-size:1rem; }
+  .pin .arrow{ color:var(--accent); font-family:"IBM Plex Mono",monospace; }
+
+  footer{
+    max-width:920px; margin:20px auto 0; padding:16px 20px calc(20px + env(safe-area-inset-bottom,0px));
+    display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint);
+    border-top:1px solid var(--line);
+  }
+</style>
+
+<nav class="topbar">
+  <a class="mark display" href="#cover"><b>JT</b>O</a>
+  <ul class="navlinks" id="navlinks">
+    <li><a href="#cover" data-page="cover"><span class="num">01</span> Cover</a></li>
+    <li><a href="#projects" data-page="projects"><span class="num">02</span> Projects</a></li>
+    <li><a href="#profile" data-page="profile"><span class="num">03</span> Profile</a></li>
+    <li><a href="#contact" data-page="contact"><span class="num">04</span> Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ============ PAGE 1 &mdash; COVER ============ -->
+  <section class="page" id="page-cover">
+    <div class="eyebrow">Portfolio &middot; Sheet 01/04</div>
+    <div class="cover-grid">
+      <div>
+        <h1 class="name display">JOE&nbsp;TCHINDA<br>OUMBE</h1>
+        <p class="role-line">Full-stack developer &mdash; <span class="tag">web &amp; mobile</span></p>
+        <p class="intro">I build software that talks to hardware, plans routes across a city, and helps students find better jobs. Currently finishing a B.Sc. in Information Technology at the University of Siegen &mdash; most recently by building an arcade cabinet that runs on a Raspberry Pi inside a factory-floor demo.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#projects">View projects &rarr;</a>
+          <a class="btn" href="https://github.com/joebrayanforus" target="_blank" rel="noopener">GitHub &#8599;</a>
+          <a class="btn" href="mailto:oumbejoe@gmail.com">Email me</a>
+        </div>
+      </div>
+      <div class="titleblock">
+        <div class="row"><div class="k">Based in</div><div class="v">Siegen, Germany</div></div>
+        <div class="row"><div class="k">Status</div><div class="v">B.Sc. IT student, 2024&ndash;2027</div></div>
+        <div class="row"><div class="k">Languages</div><div class="v">FR native &middot; DE C1 &middot; EN B2</div></div>
+        <div class="row"><div class="k">Focus</div><div class="v">Angular &middot; Flutter &middot; .NET</div></div>
+        <div class="row"><div class="k">Open to</div><div class="v">Working-student / internship</div></div>
+      </div>
+    </div>
+
+    <div class="preview-grid">
+      <div class="preview-card">
+        <div class="eyebrow">Featured build</div>
+        <h3 class="display">Production Runner</h3>
+        <p>An industrial arcade game on a Raspberry Pi, built with ifm statmath GmbH to fill the wait time on a factory floor.</p>
+        <a class="go" href="#projects">View spec sheet &rarr;</a>
+      </div>
+      <div class="preview-card">
+        <div class="eyebrow">Solo build</div>
+        <h3 class="display">Werkly</h3>
+        <p>A Flutter app that matches Werkstudent jobs to your city, schedule and German level &mdash; not just your keywords.</p>
+        <a class="go" href="#projects">View spec sheet &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PAGE 2 &mdash; PROJECTS ============ -->
+  <section class="page" id="page-projects">
+    <div class="eyebrow">Sheet 02/04</div>
+    <h2 class="display" style="font-size:1.6rem;margin:4px 0 20px;">Selected work</h2>
+
+    <article class="sheet">
+      <span class="tick-bl"></span><span class="tick-br"></span>
+      <div class="proj-head">
+        <h2 class="display">Production Runner</h2>
+        <span class="status-pill">Private &middot; built for ifm statmath</span>
+      </div>
+      <div class="meta-row">
+        <div><span class="lbl">Role</span>Full-stack developer &amp; Scrum Master</div>
+        <div><span class="lbl">Team</span>6 people</div>
+        <div><span class="lbl">Timeline</span>Sept 2025 &ndash; Feb 2026</div>
+        <div><span class="lbl">Context</span>Programmierpraktikum, Uni Siegen</div>
+      </div>
+      <div class="proj-body">
+        <p>Two players race against a Pac-Man-style production line while a model trains or a plan gets calculated in the background &mdash; turning dead time on the factory floor into a two-minute game. I worked on both ends: the Angular front end that renders the game on a Canvas, and the backend that keeps score in real time and survives a reboot.</p>
+        <div class="chips">
+          <span class="chip">Angular 17</span><span class="chip">TypeScript</span><span class="chip">Canvas API</span>
+          <span class="chip">ASP.NET Core 8</span><span class="chip">C#</span><span class="chip">SignalR</span>
+          <span class="chip">PostgreSQL</span><span class="chip">Docker</span><span class="chip">Raspberry Pi</span>
+        </div>
+        <ul class="speclist">
+          <li>Built the two-player game loop and input handling for physical arcade buttons wired into a Raspberry Pi.</li>
+          <li>Built the ASP.NET Core backend; live score and game-state updates pushed over SignalR instead of polling.</li>
+          <li>Persisted high scores in PostgreSQL so the leaderboard survives restarts and power cycles.</li>
+          <li>Packaged the whole stack in Docker so it deploys the same way on a dev laptop and the arcade cabinet.</li>
+          <li>Ran the team as Scrum Master &mdash; daily stand-ups, sprint reviews, retros &mdash; alongside writing code.</li>
+          <li>Presented the finished cabinet to a jury and live audience at "THE SUMMIT" in Siegen.</li>
+        </ul>
+        <div class="diagram">
+          <svg viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-faint)"/>
+              </marker>
+            </defs>
+            <g fill="none" stroke="var(--line-strong)" stroke-width="1.5">
+              <rect x="10" y="55" width="130" height="50" />
+              <rect x="200" y="15" width="150" height="50" />
+              <rect x="200" y="95" width="150" height="50" />
+              <rect x="420" y="55" width="130" height="50" />
+              <line x1="140" y1="80" x2="196" y2="80" marker-end="url(#arrow)"/>
+              <line x1="196" y1="80" x2="196" y2="40" />
+              <line x1="196" y1="40" x2="196" y2="40" marker-end="url(#arrow)"/>
+              <line x1="350" y1="40" x2="416" y2="80" marker-end="url(#arrow)"/>
+              <line x1="350" y1="120" x2="416" y2="80" marker-end="url(#arrow)"/>
+            </g>
+            <g font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink-dim)">
+              <text x="24" y="76">ARCADE CABINET</text>
+              <text x="24" y="90">Raspberry Pi</text>
+              <text x="214" y="36">ANGULAR + CANVAS</text>
+              <text x="214" y="50">Frontend (game view)</text>
+              <text x="214" y="116">ASP.NET CORE</text>
+              <text x="214" y="130">SignalR (real time)</text>
+              <text x="436" y="76">POSTGRESQL</text>
+              <text x="436" y="90">Score storage</text>
+            </g>
+          </svg>
+          <div class="diagram-cap">Fig. 1 &mdash; signal path, cabinet to database</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="sheet">
+      <span class="tick-bl"></span><span class="tick-br"></span>
+      <div class="proj-head">
+        <h2 class="display">Werkly</h2>
+        <span class="status-pill">In active development</span>
+      </div>
+      <div class="meta-row">
+        <div><span class="lbl">Role</span>Solo &mdash; concept, frontend, backend</div>
+        <div><span class="lbl">Started</span>2025</div>
+        <div><span class="lbl">Platform</span>Android &middot; Web</div>
+      </div>
+      <div class="proj-body">
+        <p>A Flutter app that helps Werkstudenten in Germany find jobs that actually match their city, schedule and German level &mdash; not just their keywords. It scores each listing against your profile, tracks the applications you've sent, plots jobs on a map, and can answer questions about a posting through a Gemini-powered assistant.</p>
+        <div class="chips">
+          <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Supabase</span>
+          <span class="chip">PostgreSQL</span><span class="chip">Edge Functions</span><span class="chip">OpenStreetMap</span>
+          <span class="chip">Gemini AI</span>
+        </div>
+        <ul class="speclist">
+          <li>Compatibility scoring that ranks listings against a student's profile instead of a plain keyword search.</li>
+          <li>Application tracking, so a search doesn't end at "bookmarked and forgotten."</li>
+          <li>Map view built on OpenStreetMap to browse jobs by commute, not just by list.</li>
+          <li>Supabase backend &mdash; Postgres plus Edge Functions &mdash; with an optional Gemini-based assistant for job questions.</li>
+          <li>Interface ships in French, German and English.</li>
+        </ul>
+        <div class="cta-row" style="margin-top:6px;">
+          <a class="btn primary" href="https://joebrayanforus.github.io/werkly/?v=3" target="_blank" rel="noopener">Open live demo &rarr;</a>
+          <a class="btn" href="https://github.com/joebrayanforus/werkly" target="_blank" rel="noopener">Source &#8599;</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="eyebrow" style="margin:26px 0 8px;">Minor works</div>
+    <table class="minor">
+      <thead><tr><th>Project</th><th>Stack</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td>Netflix Catalog Analysis</td><td class="tag">SQL</td><td>Exploratory analysis of a Netflix titles dataset &mdash; ratings, genres and release trends.</td></tr>
+        <tr><td>Library Management System</td><td class="tag">PL/pgSQL</td><td>A relational schema and stored procedures for checkouts, holds and fines.</td></tr>
+        <tr><td>Docker challenges</td><td class="tag">Dockerfile &middot; Node.js</td><td>Small containerization exercises &mdash; image builds, port mapping, multi-stage deploys.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ PAGE 3 &mdash; PROFILE ============ -->
+  <section class="page" id="page-profile">
+    <div class="eyebrow">Sheet 03/04</div>
+    <h2 class="display" style="font-size:1.6rem;margin:4px 0 20px;">Profile</h2>
+
+    <div class="sheet">
+      <span class="tick-bl"></span><span class="tick-br"></span>
+      <p style="margin:0 0 16px;line-height:1.65;">Software developer based in Germany, currently in the final years of a B.Sc. in Information Technology at the University of Siegen. Most of what I've shipped sits at the join of two systems &mdash; a game and a factory line, a job board and a student's calendar &mdash; which is where full-stack and a bit of hardware tend to meet. Outside of coursework and client work, I spend time on data analysis, network systems and cybersecurity fundamentals.</p>
+
+      <div class="datasheet">
+        <div class="ds-block">
+          <h4>Frontend &amp; Mobile</h4>
+          <p>Angular &middot; Flutter &middot; HTML/CSS &middot; Canvas API</p>
+        </div>
+        <div class="ds-block">
+          <h4>Backend &amp; APIs</h4>
+          <p>ASP.NET Core &middot; SignalR &middot; Supabase Edge Functions &middot; REST</p>
+        </div>
+        <div class="ds-block">
+          <h4>Data</h4>
+          <p>PostgreSQL &middot; PL/pgSQL &middot; SQL</p>
+        </div>
+        <div class="ds-block">
+          <h4>Infrastructure</h4>
+          <p>Docker &middot; Git/GitHub &middot; Raspberry Pi</p>
+        </div>
+        <div class="ds-block">
+          <h4>Languages (programming)</h4>
+          <p>TypeScript &middot; C# &middot; Dart &middot; SQL &middot; JavaScript</p>
+        </div>
+        <div class="ds-block">
+          <h4>Education</h4>
+          <p>B.Sc. Information Technology<br>University of Siegen, 2024&ndash;2027</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet">
+      <span class="tick-bl"></span><span class="tick-br"></span>
+      <h4 class="mono" style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);margin:0 0 14px;">Spoken languages</h4>
+      <div class="meter-row"><div class="lang">French</div><div class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><div class="lvl">Native</div></div>
+      <div class="meter-row"><div class="lang">German</div><div class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div><div class="lvl">C1</div></div>
+      <div class="meter-row"><div class="lang">English</div><div class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><div class="lvl">B2</div></div>
+    </div>
+  </section>
+
+  <!-- ============ PAGE 4 &mdash; CONTACT ============ -->
+  <section class="page" id="page-contact">
+    <div class="eyebrow">Sheet 04/04</div>
+    <h2 class="display" style="font-size:1.6rem;margin:4px 0 8px;">Contact</h2>
+    <p style="color:var(--ink-dim); max-width:56ch; margin:0 0 20px;">Open to working-student positions and internships in full-stack development, starting from spring 2027 &mdash; or sooner for the right project.</p>
+
+    <div class="connector">
+      <a class="pin" href="mailto:oumbejoe@gmail.com">
+        <div><span class="pk">Email</span><br><span class="pv">oumbejoe@gmail.com</span></div>
+        <span class="arrow">&#8599;</span>
+      </a>
+      <a class="pin" href="https://www.linkedin.com/in/joe-brayan-tchinda-oumbe-390282322/" target="_blank" rel="noopener">
+        <div><span class="pk">LinkedIn</span><br><span class="pv">joe-brayan-tchinda-oumbe</span></div>
+        <span class="arrow">&#8599;</span>
+      </a>
+      <a class="pin" href="https://github.com/joebrayanforus" target="_blank" rel="noopener">
+        <div><span class="pk">GitHub</span><br><span class="pv">joebrayanforus</span></div>
+        <span class="arrow">&#8599;</span>
+      </a>
+      <div class="pin" style="cursor:default;">
+        <div><span class="pk">Location</span><br><span class="pv">Siegen, Germany</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>&copy; <span id="year"></span> Joe Brayan Tchinda Oumbe &mdash; Siegen, DE</span>
+  <span id="sheet-indicator">Sheet 01/04 &mdash; Cover</span>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var pages = ['cover','projects','profile','contact'];
+  var titles = {cover:'Cover', projects:'Projects', profile:'Profile', contact:'Contact'};
+
+  function show(page){
+    if (pages.indexOf(page) === -1) page = 'cover';
+    pages.forEach(function(p){
+      var el = document.getElementById('page-' + p);
+      if (el) el.hidden = (p !== page);
+    });
+    document.querySelectorAll('.navlinks a').forEach(function(a){
+      a.classList.toggle('active', a.dataset.page === page);
+    });
+    var idx = pages.indexOf(page) + 1;
+    document.getElementById('sheet-indicator').textContent = 'Sheet 0' + idx + '/04 — ' + titles[page];
+    window.scrollTo(0,0);
+  }
+
+  function currentPage(){
+    return (location.hash || '#cover').replace('#','');
+  }
+
+  window.addEventListener('hashchange', function(){ show(currentPage()); });
+  show(currentPage());
+</script>
