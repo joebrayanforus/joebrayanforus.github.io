@@ -175,6 +175,16 @@
   .diagram svg{ width:100%; height:auto; display:block; }
   .diagram-cap{ margin-top:8px; font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); text-align:center; }
 
+  /* certificate */
+  .cert-row{ display:flex; flex-wrap:wrap; gap:16px; align-items:flex-start; margin-top:18px; padding-top:18px; border-top:1px dashed var(--line); }
+  .cert-thumb{ flex:0 0 auto; display:block; width:72px; border:1px solid var(--line-strong); background:var(--bg-raised); padding:3px; }
+  .cert-thumb img{ display:block; width:100%; height:auto; }
+  .cert-thumb:hover{ border-color:var(--accent); }
+  .cert-meta{ flex:1 1 200px; min-width:0; }
+  .cert-meta .lbl{ display:block; font-family:"IBM Plex Mono",monospace; font-size:.65rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); margin-bottom:4px; }
+  .cert-meta p{ margin:0 0 6px; font-size:.88rem; color:var(--ink-dim); line-height:1.5; overflow-wrap:break-word; }
+  .cert-meta a.go{ font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--accent); text-decoration:none; }
+
   /* minor works table */
   table.minor{ width:100%; border-collapse:collapse; font-size:.88rem; }
   table.minor th{ text-align:left; font-family:"IBM Plex Mono",monospace; font-size:.68rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint); border-bottom:1px solid var(--line-strong); padding:6px 8px; }
@@ -326,6 +336,16 @@
           </svg>
           <div class="diagram-cap">Fig. 1 &mdash; signal path, cabinet to database</div>
         </div>
+        <div class="cert-row">
+          <a class="cert-thumb" href="zertifikat-ifm.jpg" target="_blank" rel="noopener">
+            <img src="zertifikat-ifm.jpg" alt="Completion certificate, ifm statmath GmbH Programmierpraktikum 2025/2026" loading="lazy">
+          </a>
+          <div class="cert-meta">
+            <span class="lbl">Certificate</span>
+            <p>Issued by ifm statmath GmbH on completion of the Programmierpraktikum, Winter term 2025/2026.</p>
+            <a class="go" href="zertifikat-ifm.jpg" target="_blank" rel="noopener">View full certificate &rarr;</a>
+          </div>
+        </div>
       </div>
     </article>
 
@@ -388,12 +408,14 @@
     </article>
 
     <div class="eyebrow" style="margin:26px 0 8px;">Minor works</div>
-    <table class="minor">
-      <thead><tr><th>Project</th><th>Stack</th><th>Description</th></tr></thead>
-      <tbody>
-        <tr><td>Docker challenges</td><td class="tag">Dockerfile &middot; Node.js</td><td>Small containerization exercises &mdash; image builds, port mapping, multi-stage deploys.</td></tr>
-      </tbody>
-    </table>
+    <div style="overflow-x:auto;">
+      <table class="minor">
+        <thead><tr><th>Project</th><th>Stack</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>Docker challenges</td><td class="tag">Dockerfile &middot; Node.js</td><td>Small containerization exercises &mdash; image builds, port mapping, multi-stage deploys.</td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <!-- ============ PAGE 3 &mdash; PROFILE ============ -->
